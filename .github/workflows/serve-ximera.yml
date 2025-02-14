@@ -53,6 +53,7 @@ jobs:
           XIMERA_NAME: ${{ vars.XIMERA_NAME }}${{ github.ref_name }}
           XM_JOBS: 6
         run: |
+          git config --global --add safe.directory $(pwd)
           ls -alrt
           xmlatex ghaction -j 8 $XM_TO_PROCESS -f -s --compile draft.html || echo NOK 
           echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
