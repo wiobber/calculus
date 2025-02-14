@@ -52,19 +52,19 @@ jobs:
           XIMERA_URL: ${{ vars.XIMERA_URL }}
           XIMERA_NAME: ${{ vars.XIMERA_NAME }}${{ github.ref_name }}
           XM_JOBS: 6
-          LUAXAKE: /usr/local/bin/luaxake
+          LUAXAKE: "texlua /usr/local/bin/luaxake"
         run: |
           git config --global --add safe.directory $(pwd)
-          echo CHECKTEXLUA
-          type texlua
-          ls -al /usr/local/bin/luaxake
-          cat /usr/local/bin/luaxake
-          # /usr/local/bin/luaxake
-          ls -al /usr/bin/env
-          ls -alrt
-          ls -alrt /usr/local/bin
-          ls -alrt /root/texmf/tex/latex/ximeraLatex || echo NOK
-          ls -alrt /root/texmf/tex/latex/ximeraLatex/luaxake || echo NOK
+          # echo CHECKTEXLUA
+          # type texlua
+          # ls -al /usr/local/bin/luaxake
+          # cat /usr/local/bin/luaxake
+          # # /usr/local/bin/luaxake
+          # ls -al /usr/bin/env
+          # ls -alrt
+          # ls -alrt /usr/local/bin
+          # ls -alrt /root/texmf/tex/latex/ximeraLatex || echo NOK
+          # ls -alrt /root/texmf/tex/latex/ximeraLatex/luaxake || echo NOK
           xmlatex ghaction -j 8 $XM_TO_PROCESS -f -s --compile draft.html || echo NOK 
           echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
 
