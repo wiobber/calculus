@@ -5,12 +5,14 @@ on:
 
 env: 
   XM_COMPILE_SEQUENCE: draft.html
-  XM_TO_PROCESS: ${{ vars.XM_TO_PROCESS || '.' }}$
+  XM_TO_PROCESS: ${{ vars.XM_TO_PROCESS || '.' }}
 
 jobs:
   build-ximera:
     name: Build and preview Ximera Courses
     runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/ximeraproject/ximeralatex:v2.5.10-full
 
 
     permissions:
