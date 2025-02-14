@@ -12,7 +12,7 @@ jobs:
     name: Build and preview Ximera Courses
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/ximeraproject/ximeralatex:v2.5.10-full
+      image: ghcr.io/ximeraproject/ximeralatex:v2.5.10
 
 
     permissions:
@@ -59,7 +59,8 @@ jobs:
           type texlua
           ls -al /usr/local/bin/luaxake
           cat /usr/local/bin/luaxake
-          /usr/local/bin/luaxake
+          # /usr/local/bin/luaxake
+          ls -al /usr/bin/env
           ls -alrt
           ls -alrt /usr/local/bin
           ls -alrt /root/texmf/tex/latex/ximeraLatex || echo NOK
