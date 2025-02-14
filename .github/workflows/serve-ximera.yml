@@ -54,7 +54,7 @@ jobs:
           XM_JOBS: 6
         run: |
           ls -alrt
-          ./xmScripts/xmlatex ghaction -j 8 $XM_TO_PROCESS -f -s --compile draft.html || echo NOK 
+          xmlatex ghaction -j 8 $XM_TO_PROCESS -f -s --compile draft.html || echo NOK 
           echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
 
       - name: Setup ximera serve cache (only .git)
