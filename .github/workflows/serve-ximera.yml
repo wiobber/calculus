@@ -57,6 +57,9 @@ jobs:
           git config --global --add safe.directory $(pwd)
           echo CHECKTEXLUA
           type texlua
+          ls -al /usr/local/bin/luaxake
+          cat /usr/local/bin/luaxake
+          /usr/local/bin/luaxake
           ls -alrt
           ls -alrt /usr/local/bin
           ls -alrt /root/texmf/tex/latex/ximeraLatex || echo NOK
