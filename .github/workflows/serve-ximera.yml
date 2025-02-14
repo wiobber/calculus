@@ -55,9 +55,12 @@ jobs:
           LUAXAKE: /usr/local/bin/luaxake
         run: |
           git config --global --add safe.directory $(pwd)
+          echo CHECKTEXLUA
+          type texlua
           ls -alrt
           ls -alrt /usr/local/bin
           ls -alrt /root/texmf/tex/latex/ximeraLatex || echo NOK
+          ls -alrt /root/texmf/tex/latex/ximeraLatex/luaxake || echo NOK
           xmlatex ghaction -j 8 $XM_TO_PROCESS -f -s --compile draft.html || echo NOK 
           echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
 
