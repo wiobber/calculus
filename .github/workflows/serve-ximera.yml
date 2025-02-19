@@ -4,16 +4,13 @@ on:
   push:      
 
 env: 
-  XM_COMPILE_SEQUENCE: draft.html
+  XM_COMPILE_SEQUENCE: html
   XM_TO_PROCESS: ${{ vars.XM_TO_PROCESS || '.' }}
 
 jobs:
   build-ximera:
     name: Build and preview Ximera Courses
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/ximeraproject/ximeralatex:v2.5.10
-
 
     permissions:
       actions: read
@@ -52,20 +49,9 @@ jobs:
           XIMERA_URL: ${{ vars.XIMERA_URL }}
           XIMERA_NAME: ${{ vars.XIMERA_NAME }}${{ github.ref_name }}
           XM_JOBS: 6
-          LUAXAKE: "texlua /usr/local/bin/luaxake"
         run: |
           git config --global --add safe.directory $(pwd)
-          # echo CHECKTEXLUA
-          # type texlua
-          # ls -al /usr/local/bin/luaxake
-          # cat /usr/local/bin/luaxake
-          # # /usr/local/bin/luaxake
-          # ls -al /usr/bin/env
-          # ls -alrt
-          # ls -alrt /usr/local/bin
-          # ls -alrt /root/texmf/tex/latex/ximeraLatex || echo NOK
-          # ls -alrt /root/texmf/tex/latex/ximeraLatex/luaxake || echo NOK
-          xmlatex ghaction -j 8 $XM_TO_PROCESS -f -s --compile draft.html || echo NOK 
+          ./xmScripts/xmlatex ghaction -j 7 $XM_TO_PROCESS -f -s --compile html || echo NOK 
           echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
 
       - name: Setup ximera serve cache (only .git)
